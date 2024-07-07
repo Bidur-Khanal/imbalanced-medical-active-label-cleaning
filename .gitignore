@@ -4,6 +4,7 @@ checkpoints
 .neptune
 data
 sbatch_log
+corrupted_labels
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

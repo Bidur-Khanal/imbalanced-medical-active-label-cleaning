@@ -785,8 +785,8 @@ def corrupt_labels_class_dependent(targets, num_classes, corrupt_prob, candidate
 if __name__ == "__main__":
 
     run = neptune.init_run(
-    project="Neptune Project Name",
-    api_token="Neptune API tocken",
+    project="Project-Name",
+    api_token="Your API token",
 )  # your credentials
 
 

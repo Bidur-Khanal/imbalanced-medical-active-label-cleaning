@@ -441,8 +441,10 @@ class CoteachingVOGLNL:
         rate_schedule[:self.args.num_gradual] = np.linspace(0, self.forget_rate**self.args.exponent, self.args.num_gradual)
 
         for epoch in range(self.args.LNL_epochs):
+            
          
             vog1, vog2 = self.get_VOG_saliency(epoch) 
+
 
             # train for one epoch
             train1_top1, train1_top5, train1_loss, train2_top1, train2_top5, train2_loss, indexes, guessed_uncorrupted, all_losses1,\
@@ -451,7 +453,7 @@ class CoteachingVOGLNL:
             
             # get the gradients 
             gradients1, gradient_indexes1 = compute_gradient_for_data(trainloader, self.model1, self.criterion_mean, self.optimizer1, self.device, self.args)
-            gradients2, gradient_indexes2 = compute_gradient_for_data(trainloader, self.model2, self.criterion, self.optimizer2, self.device, self.args)
+            gradients2, gradient_indexes2 = compute_gradient_for_data(trainloader, self.model2, self.criterion_mean, self.optimizer2, self.device, self.args)
             
             
             # evaluate on validation set
@@ -741,7 +743,6 @@ class CoteachingVOGLNL:
 
         np.save(file_name, np.array(guessed_clean_indices,dtype='int'), allow_pickle = True)
 
-        return guessed_uncorrupted
 
     def save_checkpoint(self, state, is_best, experiment_name, filename='checkpoint.pth.tar'):
         if not os.path.exists(os.path.join(self.args.save_dir, self.args.dataset, experiment_name)):
