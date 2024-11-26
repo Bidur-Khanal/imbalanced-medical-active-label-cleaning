@@ -661,15 +661,6 @@ def loss_coteaching_select_with_VOG_mixed(y_1, y_2, t, criterion,vogs1, vogs2, f
         ind_1_sorted = np.argsort(vogs1)
         ind_2_sorted = np.argsort(vogs2)
 
-        
-        '''
-        # if VOG is computed, but we don't want to use the VOG yet 
-        # to rank the samples, just undo the sorting based done before this.
-        if epoch > args.decision_epoch:
-            ind_1_sorted = list(ind_1_sorted[::-1])
-            ind_2_sorted = list(ind_2_sorted[::-1])
-        '''
-
         loss_1 = criterion(y_1, t)
         ind_1_sorted_from_loss = np.argsort(loss_1.data.cpu())
         
